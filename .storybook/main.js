@@ -1,12 +1,30 @@
 module.exports = {
-  "stories": [
+  stories: [
     "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)"
+    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  "addons": [
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
   ],
-  "framework": "@storybook/react"
-}
+  framework: "@storybook/react",
+  webpackFinal: async (config) => {
+    config.module.rules.unshift({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: {
+                removeDimensions: true,
+              },
+            },
+          },
+        },
+      ],
+    });
+    return config;
+  },
+};
