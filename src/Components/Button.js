@@ -1,6 +1,7 @@
 import Icon from "./Icon";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useEffect, useRef, useState } from "react";
 
 export const PureButton = styled.button`
   ${({ theme }) => {
@@ -87,4 +88,66 @@ export const IconTextButton = ({ icon, iconProps, children, ...rest }) => (
 IconTextButton.propTypes = {
   icon: PropTypes.string.isRequired,
   iconProps: PropTypes.object,
+};
+
+export const ExtendButton = ({
+  icon,
+  text,
+  isActive,
+  iconActiveColor,
+  ...rest
+}) => {
+  const textRef = useRef();
+  const [maxContent, setMaxContent] = useState(0);
+
+  useEffect(() => {
+    setMaxContent(
+      textRef.current.scrollWidth +
+        10 /* gap between icon and text */ +
+        24 /* icon width */
+    );
+  }, []);
+
+  return (
+    <div
+      isActive={isActive}
+      maxContent={maxContent}
+      css={`
+        width: 24px;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        padding: 0 10px;
+
+        ${({ isActive, maxContent, theme: { isDarkMode } }) => {
+          return `
+            &:hover {
+              width: ${isActive ? "" : `${maxContent}px !important`};
+              background-color: ${
+                isActive ? "transparent" : isDarkMode ? "#143bbd" : "#c0ff4b"
+              }
+            }
+          `;
+        }}
+      `}
+      {...rest}
+    >
+      <Icon
+        name={icon}
+        style={{
+          width: 24,
+          flexShrink: 0,
+          color: isActive ? iconActiveColor : null,
+        }}
+      />
+      <div ref={textRef} style={{ marginLeft: 10 }}>
+        {text}
+      </div>
+    </div>
+  );
 };
