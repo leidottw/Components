@@ -2,12 +2,14 @@ import { useTheme } from "styled-components";
 import { IconButton } from "./Button";
 import Icon from "./Icon";
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
-export const Popup = ({ style, ...rest }) => {
+export const Popup = forwardRef(({ style, ...rest }, ref) => {
   const theme = useTheme();
 
   return (
     <div
+      ref={ref}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -20,7 +22,7 @@ export const Popup = ({ style, ...rest }) => {
       {...rest}
     ></div>
   );
-};
+});
 
 export const Header = ({
   icon,

@@ -1,6 +1,7 @@
 import { Popup, Header, Body, Footer } from "./Popup";
 import { TextButton } from "./Button";
 import { action } from "@storybook/addon-actions";
+import draggableHOC from "./draggableHOC";
 
 export default {
   title: "main/Popup",
@@ -43,4 +44,50 @@ export const popup = () => (
       <TextButton onClick={closeHandler}>Cancel</TextButton>
     </Footer>
   </Popup>
+);
+
+const DraggablePopup = draggableHOC(Popup);
+
+export const draggable = () => (
+  <DraggablePopup
+    style={{
+      width: 500,
+      height: 400,
+      position: "absolute",
+      top: 40,
+      left: 40,
+    }}
+  >
+    <Header
+      icon="settings-gear-setting-svgrepo-com"
+      text="Settings"
+      closeHandler={closeHandler}
+    ></Header>
+    <Body>
+      abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc
+      def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def
+      ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi
+      jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl
+      mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno
+      pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr
+      stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu
+      vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx
+      yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz
+      abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc
+      def ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def
+      ghi jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi
+      jkl mno pqr stu vwx yz abc def ghi jkl mno pqr stu vwx yz abc def ghi jkl
+      mno pqr stu vwx yz
+    </Body>
+    <Footer
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContents: "center",
+      }}
+    >
+      <TextButton onClick={submitHandler}>OK</TextButton>
+      <TextButton onClick={closeHandler}>Cancel</TextButton>
+    </Footer>
+  </DraggablePopup>
 );
