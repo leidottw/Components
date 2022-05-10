@@ -1,5 +1,6 @@
 import { useDarkMode } from "storybook-dark-mode";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ModalProvider } from "../src/Components/ModalManager";
 import theme from "../src/theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -25,7 +26,9 @@ export const decorators = [
   (Story) => (
     <ThemeProvider theme={useDarkMode() ? theme.dark : theme.light}>
       <GlobalStyle />
-      <Story />
+      <ModalProvider>
+        <Story />
+      </ModalProvider>
     </ThemeProvider>
   ),
 ];
