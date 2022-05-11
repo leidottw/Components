@@ -18,6 +18,7 @@ export const PureButton = styled.button`
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
+      vertical-align: bottom;
 
       &:hover {
         color: ${buttonStyle[":hover"].color};
@@ -30,31 +31,36 @@ export const PureButton = styled.button`
   }}
 `;
 
-export const IconButton = ({ icon, ...rest }) => (
+export const IconButton = ({ icon, iconProps, ...rest }) => (
   <PureButton {...rest}>
-    <Icon name={icon} />
+    <Icon name={icon} {...iconProps} />
   </PureButton>
 );
 
 IconButton.propTypes = {
   icon: PropTypes.string.isRequired,
+  iconProps: PropTypes.object,
 };
 
-export const TextButton = styled(({ children, ...rest }) => {
-  return (
-    <PureButton {...rest}>
-      <span
-        style={{
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        {children}
-      </span>
-    </PureButton>
-  );
-})`
+export const IconTextButton = styled(
+  ({ icon, iconProps, children, ...rest }) => {
+    return (
+      <PureButton {...rest}>
+        {icon ? <Icon name={icon} {...iconProps} /> : null}
+        <span
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            marginLeft: icon ? 8 : 0,
+          }}
+        >
+          {children}
+        </span>
+      </PureButton>
+    );
+  }
+)`
   ${({ theme }) => {
     const { button: buttonStyle } = theme;
 
@@ -78,15 +84,8 @@ export const TextButton = styled(({ children, ...rest }) => {
   }}
 `;
 
-export const IconTextButton = ({ icon, iconProps, children, ...rest }) => (
-  <TextButton {...rest}>
-    <Icon name={icon} {...iconProps} />
-    <span style={{ marginLeft: 8 }}>{children}</span>
-  </TextButton>
-);
-
 IconTextButton.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   iconProps: PropTypes.object,
 };
 
@@ -150,4 +149,11 @@ export const ExtendButton = ({
       </div>
     </div>
   );
+};
+
+ExtendButton.propTypes = {
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  iconActiveColor: PropTypes.string.isRequired,
 };

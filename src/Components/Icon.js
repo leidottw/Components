@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
-const Icon = React.memo(({ name, style, ...rest }) => {
+const Icon = React.memo(({ name, ...rest }) => {
   const [SVGComponent, setSVGComponent] = useState(null);
 
   useEffect(() => {
@@ -37,16 +37,17 @@ const Icon = React.memo(({ name, style, ...rest }) => {
   }, [name]);
 
   return (
-    <div
-      style={{
-        display: "inline-block",
-        width: 30,
-        ...style,
-      }}
+    <span
       {...rest}
+      css={`
+        display: inline-block;
+        width: 1rem;
+        line-height: 0;
+        vertical-align: bottom;
+      `}
     >
       {SVGComponent}
-    </div>
+    </span>
   );
 });
 

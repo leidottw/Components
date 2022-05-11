@@ -1,5 +1,5 @@
 import { Popup, Header, Body, Footer } from "./Popup";
-import { TextButton } from "./Button";
+import { IconTextButton } from "./Button";
 import { action } from "@storybook/addon-actions";
 import draggableHOC from "./draggableHOC";
 import { PromiseWrapper } from "./ModalManager";
@@ -42,8 +42,8 @@ export const popup = () => (
         justifyContents: "center",
       }}
     >
-      <TextButton onClick={submitHandler}>OK</TextButton>
-      <TextButton onClick={closeHandler}>Cancel</TextButton>
+      <IconTextButton onClick={submitHandler}>OK</IconTextButton>
+      <IconTextButton onClick={closeHandler}>Cancel</IconTextButton>
     </Footer>
   </Popup>
 );
@@ -88,8 +88,8 @@ export const draggable = () => (
         justifyContents: "center",
       }}
     >
-      <TextButton onClick={submitHandler}>OK</TextButton>
-      <TextButton onClick={closeHandler}>Cancel</TextButton>
+      <IconTextButton onClick={submitHandler}>OK</IconTextButton>
+      <IconTextButton onClick={closeHandler}>Cancel</IconTextButton>
     </Footer>
   </DraggablePopup>
 );
@@ -111,8 +111,8 @@ const PromisePopup = memo(({ msg, submitHandler, closeHandler }) => (
         justifyContents: "center",
       }}
     >
-      <TextButton onClick={submitHandler}>OK</TextButton>
-      <TextButton onClick={closeHandler}>Cancel</TextButton>
+      <IconTextButton onClick={submitHandler}>OK</IconTextButton>
+      <IconTextButton onClick={closeHandler}>Cancel</IconTextButton>
     </Footer>
   </DraggablePopup>
 ));
@@ -126,7 +126,7 @@ const PromiseWrappedPromisePopupWithID = PromiseWrapper(
 
 export const promise_based_popup = () => (
   <>
-    <TextButton
+    <IconTextButton
       onClick={() => {
         PromiseWrappedPromisePopup({
           msg: "This popup can launch multiple instances.",
@@ -136,8 +136,8 @@ export const promise_based_popup = () => (
       }}
     >
       Launch Popup
-    </TextButton>
-    <TextButton
+    </IconTextButton>
+    <IconTextButton
       onClick={() => {
         PromiseWrappedPromisePopupWithID({
           msg: "This popup can only launch once.",
@@ -147,6 +147,6 @@ export const promise_based_popup = () => (
       }}
     >
       Launch Popup with ID
-    </TextButton>
+    </IconTextButton>
   </>
 );

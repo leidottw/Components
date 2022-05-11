@@ -57,7 +57,8 @@ export const Header = ({
           {closeHandler ? (
             <IconButton
               icon="close-svgrepo-com"
-              style={{ width: 24, position: "absolute", top: 10, right: 10 }}
+              iconProps={{ style: { width: 24 } }}
+              style={{ position: "absolute", top: 10, right: 10 }}
               onClick={closeHandler}
             />
           ) : null}

@@ -18,9 +18,18 @@ export const icon = () => {
         }
       `}
     >
-      <Icon />
-      <Icon name="xxx" />
-      <Icon name="love-ui-heart-svgrepo-com" />
+      <h1>Name property not assigned</h1>
+      <div style={{ marginLeft: 20 }}>
+        <Icon />
+      </div>
+      <h1>No corresponding SVG found</h1>
+      <div style={{ marginLeft: 20 }}>
+        <Icon name="xxx" />
+      </div>
+      <h1>Use correctly</h1>
+      <div style={{ marginLeft: 20 }}>
+        <Icon name="love-ui-heart-svgrepo-com" />
+      </div>
     </div>
   );
 };
@@ -41,6 +50,7 @@ export const icon_list = () => {
         navigator.clipboard.writeText(filename);
         action("copied")(filename);
       }}
+      key={filename}
     />
   ));
 };

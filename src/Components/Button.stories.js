@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  PureButton,
-  TextButton,
-  IconButton,
-  IconTextButton,
-  ExtendButton,
-} from "./Button";
+import { PureButton, IconButton, IconTextButton, ExtendButton } from "./Button";
 
 export default {
   title: "main/Button",
@@ -17,45 +11,18 @@ export const icon_button = () => (
   <IconButton icon="love-ui-heart-svgrepo-com" title="heart"></IconButton>
 );
 
-export const text_button = () => (
-  <>
-    <TextButton>text</TextButton>
-    <TextButton>long text long text long text</TextButton>
-    <TextButton style={{ width: 200 }}>long text with width 200px</TextButton>
-  </>
-);
-
 export const icon_text_button = () => (
   <>
-    <IconTextButton
-      icon="love-ui-heart-svgrepo-com"
-      iconProps={{
-        style: {
-          width: 20,
-        },
-      }}
-    >
-      text
+    <IconTextButton>text</IconTextButton>
+    <IconTextButton>long text long text long text</IconTextButton>
+    <IconTextButton style={{ width: 200 }}>
+      long text with width 200px
     </IconTextButton>
-    <IconTextButton
-      icon="love-ui-heart-svgrepo-com"
-      iconProps={{
-        style: {
-          width: 20,
-        },
-      }}
-    >
+    <IconTextButton icon="love-ui-heart-svgrepo-com">text</IconTextButton>
+    <IconTextButton icon="love-ui-heart-svgrepo-com">
       long text long text long text
     </IconTextButton>
-    <IconTextButton
-      icon="love-ui-heart-svgrepo-com"
-      iconProps={{
-        style: {
-          width: 18,
-        },
-      }}
-      style={{ width: 200 }}
-    >
+    <IconTextButton icon="love-ui-heart-svgrepo-com" style={{ width: 200 }}>
       long text with width 200px
     </IconTextButton>
   </>
